@@ -76,4 +76,18 @@ artifacts {
     archives sourcesJar
 }
 
-apply from: file('gradle/gradle-mvn-push.gradle')
+//apply from: file('gradle/gradle-mvn-push.gradle')
+//This is for test
+apply plugin: 'maven'
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(url: uri('../repo')){
+        pom.groupId = GROUP
+        pom.artifactId = POM_ARTIFACT_ID
+        pom.version = VERSION_NAME
+      }
+    }
+  }
+}
